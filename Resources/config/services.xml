@@ -11,6 +11,16 @@
         <service id="biplane_enum.serializer.enum_normalizer" class="Biplane\EnumBundle\Serializer\Normalizer\EnumNormalizer" />
 
         <service id="biplane_enum.jms_serializer.enum_handler" class="Biplane\EnumBundle\Serializer\Handler\EnumHandler" />
+
+        <service id="biplane_enum.orm_subscriber" class="Biplane\EnumBundle\Subscribers\EnumSubscriber">
+            <argument type="service" id="annotation_reader" />
+            <tag name="doctrine.event_subscriber" />
+        </service>
+        <service id="biplane_enum.type_guesser" class="Biplane\EnumBundle\Form\TypeGuesser\EnumTypeGuesser">
+            <argument type="service" id="annotation_reader" />
+            <tag name="form.type_guesser"/>
+        </service>
+
     </services>
 
 </container>
