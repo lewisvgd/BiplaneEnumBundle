@@ -169,6 +169,37 @@ class User
 }
 ```
 
+Or you can use annotations, specifying the enum class 
+(note: Symfony will also guesses the form type)
+
+```php
+<?php
+
+namespace Acme\DemoBundle\Doctrine\Type;
+
+use \Your\Bundle\Entity\Enum\EnumRole;
+
+class User
+{
+    /**
+     * @ORM\Column(type="string")
+     * @Enum("\Your\Bundle\Entity\Enum\EnumRole") 
+     */
+    private $role;
+    
+
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    public function setRole(EnumRole $role)
+    {
+        $this->role = $role;
+    }
+}
+```
+
 Or you can create a custom type of DBAL for move the logic of casting type from the entity:
 
 ```php
